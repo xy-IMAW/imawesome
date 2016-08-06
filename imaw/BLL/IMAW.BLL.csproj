@@ -57,6 +57,10 @@
     <Compile Include="user_memberBLL.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\COMMON\COMMON.csproj">
+      <Project>{a00578b0-e09e-404e-b559-76fa47218b8e}</Project>
+      <Name>COMMON</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\IMAW.DAL.csproj">
       <Project>{54c9dc2c-1cfd-4f09-af31-d96d5a3feabf}</Project>
       <Name>IMAW.DAL</Name>

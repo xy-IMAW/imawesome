@@ -103,75 +103,75 @@ namespace imaw.Admin {
         protected global::FineUI.ToolbarText ToolbarText1;
         
         /// <summary>
-        /// ToolbarSeparator2 控件。
+        /// news_id 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.ToolbarSeparator ToolbarSeparator2;
+        protected global::FineUI.Label news_id;
         
         /// <summary>
-        /// ToolbarText2 控件。
+        /// news_posterid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.ToolbarText ToolbarText2;
+        protected global::FineUI.Label news_posterid;
         
         /// <summary>
-        /// Label2 控件。
+        /// news_postername 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Label Label2;
+        protected global::FineUI.Label news_postername;
         
         /// <summary>
-        /// Label3 控件。
+        /// news_state 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Label Label3;
+        protected global::FineUI.DropDownList news_state;
         
         /// <summary>
-        /// NumberBox1 控件。
+        /// news_title 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.NumberBox NumberBox1;
+        protected global::FineUI.TextBox news_title;
         
         /// <summary>
-        /// DatePicker1 控件。
+        /// news_createtime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.DatePicker DatePicker1;
+        protected global::FineUI.DatePicker news_createtime;
         
         /// <summary>
-        /// TextArea2 控件。
+        /// news_abstract 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.TextArea TextArea2;
+        protected global::FineUI.TextArea news_abstract;
         
         /// <summary>
-        /// HtmlEditor1 控件。
+        /// news_content 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.HtmlEditor HtmlEditor1;
+        protected global::FineUI.HtmlEditor news_content;
     }
 }

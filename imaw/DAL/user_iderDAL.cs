@@ -130,16 +130,18 @@ namespace IMAW.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public IMAW.Model.user_ider GetModel()
+		public IMAW.Model.user_ider GetModel(string ider_id)
 		{
-			//该表无主键信息，请自定义主键/条件字段
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 ider_id,dept_id,role_id,role_starttime,role_endtime,ider_balance from user_ider ");
-			strSql.Append(" where ");
+			strSql.Append("select  top 1 ider_id,user_id,dept_id,role_id,role_starttime,role_endtime,ider_balance from user_ider ");
+			strSql.Append(" where ider_id = @ider_id ");
 			SqlParameter[] parameters = {
-			};
+                        new SqlParameter("@ider_id", SqlDbType.VarChar,50)
+             };
+            parameters[0].Value = ider_id;
 
-			IMAW.Model.user_ider model=new IMAW.Model.user_ider();
+
+            IMAW.Model.user_ider model=new IMAW.Model.user_ider();
 			DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
 			if(ds.Tables[0].Rows.Count>0)
 			{
@@ -164,7 +166,11 @@ namespace IMAW.DAL
 				{
 					model.ider_id=row["ider_id"].ToString();
 				}
-				if(row["dept_id"]!=null && row["dept_id"].ToString()!="")
+                if (row["user_id"] != null)
+                {
+                    model.user_id = row["user_id"].ToString();
+                }
+                if (row["dept_id"]!=null && row["dept_id"].ToString()!="")
 				{
 					model.dept_id=int.Parse(row["dept_id"].ToString());
 				}

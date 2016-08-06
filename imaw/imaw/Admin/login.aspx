@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="imaw.FineUI.login" %>
 
- 
+
 <!DOCTYPE html>
 <html>
 <head runat="server">
@@ -22,10 +22,16 @@
                 <f:SimpleForm ID="SimpleForm1" runat="server" ShowBorder="false" BodyPadding="10px"
                     LabelWidth="60px" ShowHeader="false">
                     <Items>
-                        <f:TextBox ID="tbxUserName" Label="用户名" Required="true" runat="server">
+                        <f:TextBox ID="ad_id" Label="用户名" Required="true" runat="server">
                         </f:TextBox>
-                        <f:TextBox ID="tbxPassword" Label="密码" TextMode="Password" Required="true" runat="server">
+                        <f:TextBox ID="ad_pwd" Label="密码" TextMode="Password" Required="true" runat="server">
                         </f:TextBox>
+                        <f:DropDownList runat="server" ID="ad_class">
+                            <f:ListItem Text="超级管理员" Value="1" Selected="true" />
+                            <f:ListItem Text="新闻管理员" Value="2" EnableSelect="true" />
+                            <f:ListItem Text="活动管理员" Value="3" EnableSelect="true" />
+                            <f:ListItem Text="招新管理员" Value="4" EnableSelect="true" />
+                        </f:DropDownList>
                     </Items>
                 </f:SimpleForm>
             </Items>

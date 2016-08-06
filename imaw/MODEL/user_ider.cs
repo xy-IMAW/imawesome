@@ -22,7 +22,8 @@ namespace IMAW.Model
 		{}
 		#region Model
 		private string _ider_id;
-		private int _dept_id;
+        private string _user_id;
+        private int _dept_id;
 		private int _role_id;
 		private DateTime _role_starttime;
 		private DateTime _role_endtime;
@@ -35,10 +36,19 @@ namespace IMAW.Model
 			set{ _ider_id=value;}
 			get{return _ider_id;}
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public int dept_id
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string user_id
+        {
+            set { _user_id = value; }
+            get { return _user_id; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int dept_id
 		{
 			set{ _dept_id=value;}
 			get{return _dept_id;}

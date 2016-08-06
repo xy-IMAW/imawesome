@@ -216,12 +216,33 @@
       <DependentUpon>bannerdetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ISingleGridPage.cs" />
+    <Compile Include="Admin\news.aspx.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\news.aspx.designer.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\newsadd.aspx.cs">
+      <DependentUpon>newsadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\newsadd.aspx.designer.cs">
+      <DependentUpon>newsadd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\newsdetails.aspx.cs">
       <DependentUpon>newsdetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\newsdetails.aspx.designer.cs">
       <DependentUpon>newsdetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\register.aspx.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\register.aspx.designer.cs">
+      <DependentUpon>register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SingleGrid.Master.cs">
       <DependentUpon>SingleGrid.Master</DependentUpon>
@@ -258,7 +279,10 @@
     <Content Include="Admin\admin.aspx" />
     <Content Include="Admin\banner.aspx" />
     <Content Include="Admin\bannerdetails.aspx" />
+    <Content Include="Admin\news.aspx" />
+    <Content Include="Admin\newsadd.aspx" />
     <Content Include="Admin\newsdetails.aspx" />
+    <Content Include="Admin\register.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -335,6 +359,20 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\IMAW.BLL.csproj">
+      <Project>{9b780350-45b6-4dd3-a14e-751135be6694}</Project>
+      <Name>IMAW.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\COMMON\COMMON.csproj">
+      <Project>{a00578b0-e09e-404e-b559-76fa47218b8e}</Project>
+      <Name>COMMON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MODEL\IMAW.MODEL.csproj">
+      <Project>{ed9ece7d-2389-4f0e-b132-f19dd92f0db2}</Project>
+      <Name>IMAW.MODEL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

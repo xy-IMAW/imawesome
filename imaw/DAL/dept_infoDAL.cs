@@ -14,7 +14,8 @@ using System;
 using System.Data;
 using System.Text;
 using System.Data.SqlClient;
-using IMAW.COMMON;//Please add references
+using IMAW.Model;
+using COMMON;//Please add references
 
 namespace IMAW.DAL
 {
@@ -42,9 +43,9 @@ namespace IMAW.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select count(1) from dept_info");
-			strSql.Append(" where dept_id=SQL2012dept_id");
+			strSql.Append(" where dept_id=@dept_id");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012dept_id", SqlDbType.Int,4)
+					new SqlParameter("@dept_id", SqlDbType.Int,4)
 			};
 			parameters[0].Value = dept_id;
 
@@ -55,19 +56,19 @@ namespace IMAW.DAL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public int Add(Maticsoft.Model.dept_info model)
+		public int Add(IMAW.Model.dept_info model)
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into dept_info(");
 			strSql.Append("dept_name,dept_introduce,dept_minister_id,dept_num)");
 			strSql.Append(" values (");
-			strSql.Append("SQL2012dept_name,SQL2012dept_introduce,SQL2012dept_minister_id,SQL2012dept_num)");
+			strSql.Append("@dept_name,@dept_introduce,@dept_minister_id,@dept_num)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012dept_name", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012dept_introduce", SqlDbType.NVarChar,300),
-					new SqlParameter("SQL2012dept_minister_id", SqlDbType.VarChar,20),
-					new SqlParameter("SQL2012dept_num", SqlDbType.Int,4)};
+					new SqlParameter("@dept_name", SqlDbType.NVarChar,50),
+					new SqlParameter("@dept_introduce", SqlDbType.NVarChar,300),
+					new SqlParameter("@dept_minister_id", SqlDbType.VarChar,20),
+					new SqlParameter("@dept_num", SqlDbType.Int,4)};
 			parameters[0].Value = model.dept_name;
 			parameters[1].Value = model.dept_introduce;
 			parameters[2].Value = model.dept_minister_id;
@@ -86,21 +87,21 @@ namespace IMAW.DAL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Maticsoft.Model.dept_info model)
+		public bool Update(IMAW.Model.dept_info model)
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("update dept_info set ");
-			strSql.Append("dept_name=SQL2012dept_name,");
-			strSql.Append("dept_introduce=SQL2012dept_introduce,");
-			strSql.Append("dept_minister_id=SQL2012dept_minister_id,");
-			strSql.Append("dept_num=SQL2012dept_num");
-			strSql.Append(" where dept_id=SQL2012dept_id");
+			strSql.Append("dept_name=@dept_name,");
+			strSql.Append("dept_introduce=@dept_introduce,");
+			strSql.Append("dept_minister_id=@dept_minister_id,");
+			strSql.Append("dept_num=@dept_num");
+			strSql.Append(" where dept_id=@dept_id");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012dept_name", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012dept_introduce", SqlDbType.NVarChar,300),
-					new SqlParameter("SQL2012dept_minister_id", SqlDbType.VarChar,20),
-					new SqlParameter("SQL2012dept_num", SqlDbType.Int,4),
-					new SqlParameter("SQL2012dept_id", SqlDbType.Int,4)};
+					new SqlParameter("@dept_name", SqlDbType.NVarChar,50),
+					new SqlParameter("@dept_introduce", SqlDbType.NVarChar,300),
+					new SqlParameter("@dept_minister_id", SqlDbType.VarChar,20),
+					new SqlParameter("@dept_num", SqlDbType.Int,4),
+					new SqlParameter("@dept_id", SqlDbType.Int,4)};
 			parameters[0].Value = model.dept_name;
 			parameters[1].Value = model.dept_introduce;
 			parameters[2].Value = model.dept_minister_id;
@@ -126,9 +127,9 @@ namespace IMAW.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from dept_info ");
-			strSql.Append(" where dept_id=SQL2012dept_id");
+			strSql.Append(" where dept_id=@dept_id");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012dept_id", SqlDbType.Int,4)
+					new SqlParameter("@dept_id", SqlDbType.Int,4)
 			};
 			parameters[0].Value = dept_id;
 
@@ -165,18 +166,18 @@ namespace IMAW.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Maticsoft.Model.dept_info GetModel(int dept_id)
+		public IMAW.Model.dept_info GetModel(int dept_id)
 		{
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select  top 1 dept_id,dept_name,dept_introduce,dept_minister_id,dept_num from dept_info ");
-			strSql.Append(" where dept_id=SQL2012dept_id");
+			strSql.Append(" where dept_id=@dept_id");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012dept_id", SqlDbType.Int,4)
+					new SqlParameter("@dept_id", SqlDbType.Int,4)
 			};
 			parameters[0].Value = dept_id;
 
-			Maticsoft.Model.dept_info model=new Maticsoft.Model.dept_info();
+			IMAW.Model.dept_info model=new IMAW.Model.dept_info();
 			DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
 			if(ds.Tables[0].Rows.Count>0)
 			{
@@ -192,9 +193,9 @@ namespace IMAW.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Maticsoft.Model.dept_info DataRowToModel(DataRow row)
+		public IMAW.Model.dept_info DataRowToModel(DataRow row)
 		{
-			Maticsoft.Model.dept_info model=new Maticsoft.Model.dept_info();
+			IMAW.Model.dept_info model=new IMAW.Model.dept_info();
 			if (row != null)
 			{
 				if(row["dept_id"]!=null && row["dept_id"].ToString()!="")
@@ -311,13 +312,13 @@ namespace IMAW.DAL
 		public DataSet GetList(int PageSize,int PageIndex,string strWhere)
 		{
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012tblName", SqlDbType.VarChar, 255),
-					new SqlParameter("SQL2012fldName", SqlDbType.VarChar, 255),
-					new SqlParameter("SQL2012PageSize", SqlDbType.Int),
-					new SqlParameter("SQL2012PageIndex", SqlDbType.Int),
-					new SqlParameter("SQL2012IsReCount", SqlDbType.Bit),
-					new SqlParameter("SQL2012OrderType", SqlDbType.Bit),
-					new SqlParameter("SQL2012strWhere", SqlDbType.VarChar,1000),
+					new SqlParameter("@tblName", SqlDbType.VarChar, 255),
+					new SqlParameter("@fldName", SqlDbType.VarChar, 255),
+					new SqlParameter("@PageSize", SqlDbType.Int),
+					new SqlParameter("@PageIndex", SqlDbType.Int),
+					new SqlParameter("@IsReCount", SqlDbType.Bit),
+					new SqlParameter("@OrderType", SqlDbType.Bit),
+					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
 					};
 			parameters[0].Value = "dept_info";
 			parameters[1].Value = "dept_id";

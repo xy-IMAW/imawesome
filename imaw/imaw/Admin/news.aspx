@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/SingleGrid.Master" AutoEventWireup="true" CodeBehind="news.aspx.cs" Inherits="imaw.Admin.news" %>
+
 <%@ MasterType VirtualPath="~/Admin/SingleGrid.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="mainCPH" runat="server">
@@ -23,25 +24,35 @@
     <f:Grid ID="Grid1" EnableCollapse="false" PageSize="5" ShowBorder="true" ShowHeader="false"
         BoxFlex="1"
         AllowPaging="true" runat="server" EnableCheckBoxSelect="True"
-        DataKeyNames="Id,Name" IsDatabasePaging="true"
-        AllowSorting="true" SortField="Name" SortDirection="ASC">
+        DataKeyNames="news_id,news_title" IsDatabasePaging="true"
+        AllowSorting="true" SortField="news_id" SortDirection="ASC">
         <Columns>
             <f:RowNumberField />
-            <f:BoundField Width="100px" DataField="Name" SortField="Name" DataFormatString="{0}"
-                HeaderText="姓名" />
-            <f:TemplateField Width="80px" SortField="Gender" HeaderText="性别">
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" Text='<%# GetGender(Eval("Gender")) %>'></asp:Label>
-                </ItemTemplate>
-            </f:TemplateField>
-            <f:BoundField Width="80px" SortField="EntranceYear" DataField="EntranceYear" HeaderText="入学年份" />
-            <f:CheckBoxField Width="80px" SortField="AtSchool" RenderAsStaticField="true" DataField="AtSchool"
-                HeaderText="是否在校" />
-            <f:HyperLinkField HeaderText="所学专业" DataToolTipField="Major" DataTextField="Major"
-                DataTextFormatString="{0}" DataNavigateUrlFields="Major" DataNavigateUrlFormatString="http://gsa.ustc.edu.cn/search?q={0}"
-                UrlEncode="true" Target="_blank" ExpandUnusedSpace="True" />
-            <f:ImageField Width="80px" DataImageUrlField="Group" DataImageUrlFormatString="~/res/images/16/{0}.png"
-                HeaderText="分组"></f:ImageField>
+            <f:BoundField DataField="news_id" Width="100px" SortField="news_id" DataFormatString="{0}"
+                HeaderText="新闻编号" />
+
+            <f:BoundField DataField="news_title" Width="100px" SortField="news_title" DataFormatString="{0}"
+                HeaderText="新闻名称" />
+
+            <f:BoundField DataField="news_posterid" Width="100px" SortField="news_posterid" DataFormatString="{0}"
+                HeaderText="发布者编号" />
+
+            <f:BoundField DataField="news_postername" Width="100px" SortField="news_postername" DataFormatString="{0}"
+                HeaderText="发布者姓名" />
+
+            <f:BoundField DataField="news_createtime" Width="100px" SortField="news_createtime" DataFormatString="{0}"
+                HeaderText="发布时间" />
+
+            <f:BoundField DataField="news_state" Width="50px" SortField="news_state" DataFormatString="{0}"
+                HeaderText="新闻级别" />
+
+            <f:BoundField DataField="news_abstract" Width="200px" SortField="news_abstract" DataFormatString="{0}"
+                HeaderText="新闻概要" />
+
+            <f:BoundField DataField="news_content" Width="200px" SortField="news_content" DataFormatString="{0}"
+                HeaderText="新闻内容" />
+
+
         </Columns>
         <Toolbars>
             <f:Toolbar ID="Toolbar1" runat="server">
@@ -53,7 +64,7 @@
         </Toolbars>
     </f:Grid>
 </asp:Content>
- 
+
 <asp:Content runat="server" ContentPlaceHolderID="headCPH">
-    <meta name="sourcefiles" content="~/Admin/SingleGrid.Master;~/Admin/SingleGrid/ISingleGridPage.cs" />
+    <meta name="sourcefiles" content="~/Admin/SingleGrid.Master;~/Admin/ISingleGridPage.cs" />
 </asp:Content>

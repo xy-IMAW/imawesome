@@ -6,7 +6,7 @@
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title> 学生成绩管理系统</title>
+    <title>学生成绩管理系统</title>
     <style>
         .header .title a,
         .header .pro a {
@@ -16,6 +16,7 @@
             line-height: 50px;
             margin-left: 10px;
         }
+
         .header .pro {
             position: absolute;
             top: 0;
@@ -69,15 +70,15 @@
                         <f:Tree runat="server" ShowBorder="false" ShowHeader="false" EnableArrows="true" EnableLines="true" ID="leftMenuTree">
                             <Nodes>
                                 <f:TreeNode Text="新闻模块" Expanded="true">
-                                    <f:TreeNode Text="首页大图" NavigateUrl=""></f:TreeNode>
-                                    <f:TreeNode Text="新闻管理" NavigateUrl=""></f:TreeNode>
+                                    <f:TreeNode Text="首页大图" NavigateUrl="banner.aspx"></f:TreeNode>
+                                    <f:TreeNode Text="新闻管理" NavigateUrl="news.aspx"></f:TreeNode>
                                     <f:TreeNode Text="留言回复" NavigateUrl=""></f:TreeNode>
-                                </f:TreeNode> 
+                                </f:TreeNode>
                                 <f:TreeNode Text="活动模块" Expanded="true">
                                     <f:TreeNode Text="活动发布" NavigateUrl=""></f:TreeNode>
                                     <f:TreeNode Text="报名管理" NavigateUrl=""></f:TreeNode>
                                 </f:TreeNode>
-                                <f:TreeNode Text="会员模块" Expanded="true">
+                                <f:TreeNode Text="招新管理" Expanded="true">
                                     <f:TreeNode Text="信息管理" NavigateUrl=""></f:TreeNode>
                                     <f:TreeNode Text="招新管理" NavigateUrl="true">
                                         <f:TreeNode Text="申请信息" NavigateUrl=""></f:TreeNode>
@@ -87,6 +88,11 @@
                                         <f:TreeNode Text="综管部" NavigateUrl=""></f:TreeNode>
                                         <f:TreeNode Text="公关部" NavigateUrl=""></f:TreeNode>
                                     </f:TreeNode>
+                                </f:TreeNode>
+                                <f:TreeNode Text="用户管理" Expanded="true">
+                                    <f:TreeNode Text="网站用户" NavigateUrl=""></f:TreeNode>
+                                    <f:TreeNode Text="协会会员" NavigateUrl=""></f:TreeNode>
+                                    <f:TreeNode Text="协会成员" NavigateUrl=""></f:TreeNode>
                                 </f:TreeNode>
                             </Nodes>
                         </f:Tree>
@@ -144,8 +150,13 @@
                         <f:ContentPanel ID="ContentPanel3" runat="server" ShowBorder="false" ShowHeader="false">
                             <table class="bottomtable">
                                 <tr>
-                                    <td style="width: 300px;">&nbsp;版本：<a target="_blank" href="http://fineui.com/version">v<asp:Literal runat="server" ID="litVersion"></asp:Literal></a>
-                                        &nbsp;&nbsp; <a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=5a98eb42b742a1edaf22826648d5f61bc16ed08e0253976bc8d30f97508c09c7">QQ公开群</a></td>
+                                    <td style="width: 300px;">
+                                        
+                                        <f:Label ID="ad" Text="" runat="server">
+                                        </f:Label>
+                                        <f:Label ID="ad_class" Text="" runat="server">
+                                        </f:Label>
+                                    </td>
                                     <td style="text-align: center;">Copyright &copy; 武汉理工大学信息管理协会</td>
                                     <td style="width: 300px; text-align: right;">&nbsp;</td>
                                 </tr>

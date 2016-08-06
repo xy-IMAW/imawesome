@@ -53,36 +53,39 @@ namespace IMAW.DAL
 		}
 
 
-		/// <summary>
-		/// 增加一条数据
-		/// </summary>
-		public int Add(IMAW.Model.news model)
-		{
-			StringBuilder strSql=new StringBuilder();
-			strSql.Append("insert into news(");
-			strSql.Append("news_createtime,news_posterid,news_title,news_class,news_abstract,news_content,news_readnum,news_state)");
-			strSql.Append(" values (");
-			strSql.Append("@news_createtime,@news_posterid,@news_title,@news_class,@news_abstract,@news_content,@news_readnum,@news_state)");
-			strSql.Append(";select @@IDENTITY");
-			SqlParameter[] parameters = {
-					new SqlParameter("@news_createtime", SqlDbType.DateTime),
-					new SqlParameter("@news_posterid", SqlDbType.VarChar,50),
-					new SqlParameter("@news_title", SqlDbType.NVarChar,50),
-					new SqlParameter("@news_class", SqlDbType.NVarChar,50),
-					new SqlParameter("@news_abstract", SqlDbType.NVarChar,200),
-					new SqlParameter("@news_content", SqlDbType.NVarChar,-1),
-					new SqlParameter("@news_readnum", SqlDbType.Int,4),
-					new SqlParameter("@news_state", SqlDbType.Int,4)};
-			parameters[0].Value = model.news_createtime;
-			parameters[1].Value = model.news_posterid;
-			parameters[2].Value = model.news_title;
-			parameters[3].Value = model.news_class;
-			parameters[4].Value = model.news_abstract;
-			parameters[5].Value = model.news_content;
-			parameters[6].Value = model.news_readnum;
-			parameters[7].Value = model.news_state;
+        /// <summary>
+        /// 增加一条数据
+        /// </summary>
+        public int Add(IMAW.Model.news model)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("insert into news(");
+            strSql.Append("news_createtime,news_posterid,news_postername,news_title,news_class,news_abstract,news_content,news_readnum,news_state)");
+            strSql.Append(" values (");
+            strSql.Append("@news_createtime,@news_posterid,@news_postername,@news_title,@news_class,@news_abstract,@news_content,@news_readnum,@news_state)");
+            strSql.Append(";select @@IDENTITY");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@news_createtime", SqlDbType.DateTime),
+                    new SqlParameter("@news_posterid", SqlDbType.VarChar,50),
+                    new SqlParameter("@news_postername", SqlDbType.NVarChar,20),
+                    new SqlParameter("@news_title", SqlDbType.NVarChar,50),
+                    new SqlParameter("@news_class", SqlDbType.NVarChar,50),
+                    new SqlParameter("@news_abstract", SqlDbType.NVarChar,200),
+                    new SqlParameter("@news_content", SqlDbType.NVarChar,-1),
+                    new SqlParameter("@news_readnum", SqlDbType.Int,4),
+                    new SqlParameter("@news_state", SqlDbType.Int,4),
 
-			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
+            };
+            parameters[0].Value = model.news_createtime;
+            parameters[1].Value = model.news_posterid;
+            parameters[2].Value = model.news_postername;
+            parameters[3].Value = model.news_title;
+			parameters[4].Value = model.news_class;
+			parameters[5].Value = model.news_abstract;
+			parameters[6].Value = model.news_content;
+			parameters[7].Value = model.news_readnum;
+			parameters[8].Value = model.news_state;
+            object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
 			{
 				return 0;
@@ -101,34 +104,40 @@ namespace IMAW.DAL
 			strSql.Append("update news set ");
 			strSql.Append("news_createtime=@news_createtime,");
 			strSql.Append("news_posterid=@news_posterid,");
-			strSql.Append("news_title=@news_title,");
+            strSql.Append("news_postername=@news_postername,");
+            strSql.Append("news_title=@news_title,");
 			strSql.Append("news_class=@news_class,");
 			strSql.Append("news_abstract=@news_abstract,");
 			strSql.Append("news_content=@news_content,");
 			strSql.Append("news_readnum=@news_readnum,");
 			strSql.Append("news_state=@news_state");
 			strSql.Append(" where news_id=@news_id");
-			SqlParameter[] parameters = {
-					new SqlParameter("@news_createtime", SqlDbType.DateTime),
-					new SqlParameter("@news_posterid", SqlDbType.VarChar,50),
-					new SqlParameter("@news_title", SqlDbType.NVarChar,50),
-					new SqlParameter("@news_class", SqlDbType.NVarChar,50),
-					new SqlParameter("@news_abstract", SqlDbType.NVarChar,200),
-					new SqlParameter("@news_content", SqlDbType.NVarChar,-1),
-					new SqlParameter("@news_readnum", SqlDbType.Int,4),
-					new SqlParameter("@news_state", SqlDbType.Int,4),
-					new SqlParameter("@news_id", SqlDbType.Int,4)};
-			parameters[0].Value = model.news_createtime;
-			parameters[1].Value = model.news_posterid;
-			parameters[2].Value = model.news_title;
-			parameters[3].Value = model.news_class;
-			parameters[4].Value = model.news_abstract;
-			parameters[5].Value = model.news_content;
-			parameters[6].Value = model.news_readnum;
-			parameters[7].Value = model.news_state;
-			parameters[8].Value = model.news_id;
+            SqlParameter[] parameters = {
+                    new SqlParameter("@news_createtime", SqlDbType.DateTime),
+                    new SqlParameter("@news_posterid", SqlDbType.VarChar,50),
+                    new SqlParameter("@news_postername", SqlDbType.NVarChar,20),
+                    new SqlParameter("@news_title", SqlDbType.NVarChar,50),
+                    new SqlParameter("@news_class", SqlDbType.NVarChar,50),
+                    new SqlParameter("@news_abstract", SqlDbType.NVarChar,200),
+                    new SqlParameter("@news_content", SqlDbType.NVarChar,-1),
+                    new SqlParameter("@news_readnum", SqlDbType.Int,4),
+                    new SqlParameter("@news_state", SqlDbType.Int,4),
+                    new SqlParameter("@news_id", SqlDbType.Int,4)
 
-			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
+            };
+            parameters[0].Value = model.news_createtime;
+            parameters[1].Value = model.news_posterid;
+            parameters[2].Value = model.news_postername;
+            parameters[3].Value = model.news_title;
+            parameters[4].Value = model.news_class;
+            parameters[5].Value = model.news_abstract;
+            parameters[6].Value = model.news_content;
+            parameters[7].Value = model.news_readnum;
+            parameters[8].Value = model.news_state;
+            parameters[9].Value = model.news_id;
+
+
+            int rows =DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
 			{
 				return true;
@@ -190,7 +199,7 @@ namespace IMAW.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 news_id,news_createtime,news_posterid,news_title,news_class,news_abstract,news_content,news_readnum,news_state from news ");
+			strSql.Append("select  top 1 news_id,news_createtime,news_posterid,news_postername,news_title,news_class,news_abstract,news_content,news_readnum,news_state from news ");
 			strSql.Append(" where news_id=@news_id");
 			SqlParameter[] parameters = {
 					new SqlParameter("@news_id", SqlDbType.Int,4)
@@ -230,11 +239,15 @@ namespace IMAW.DAL
 				{
 					model.news_posterid=row["news_posterid"].ToString();
 				}
-				if(row["news_title"]!=null)
+                if (row["news_postername"] !=null)
 				{
-					model.news_title=row["news_title"].ToString();
+					model.news_postername = row["news_postername"].ToString();
 				}
-				if(row["news_class"]!=null)
+                if (row["news_title"] != null)
+                {
+                    model.news_title = row["news_title"].ToString();
+                }
+                if (row["news_class"]!=null)
 				{
 					model.news_class=row["news_class"].ToString();
 				}
@@ -264,7 +277,7 @@ namespace IMAW.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select news_id,news_createtime,news_posterid,news_title,news_class,news_abstract,news_content,news_readnum,news_state ");
+			strSql.Append("select news_id,news_createtime,news_posterid,news_postername,news_title,news_class,news_abstract,news_content,news_readnum,news_state ");
 			strSql.Append(" FROM news ");
 			if(strWhere.Trim()!="")
 			{
@@ -284,7 +297,7 @@ namespace IMAW.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" news_id,news_createtime,news_posterid,news_title,news_class,news_abstract,news_content,news_readnum,news_state ");
+			strSql.Append(" news_id,news_createtime,news_posterid,news_postername,news_postername,news_title,news_class,news_abstract,news_content,news_readnum,news_state ");
 			strSql.Append(" FROM news ");
 			if(strWhere.Trim()!="")
 			{

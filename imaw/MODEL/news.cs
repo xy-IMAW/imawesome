@@ -24,7 +24,8 @@ namespace IMAW.Model
 		private int _news_id;
 		private DateTime _news_createtime;
 		private string _news_posterid;
-		private string _news_title;
+        private string _news_postername;
+        private string _news_title;
 		private string _news_class;
 		private string _news_abstract;
 		private string _news_content;
@@ -54,10 +55,19 @@ namespace IMAW.Model
 			set{ _news_posterid=value;}
 			get{return _news_posterid;}
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public string news_title
+        /// <summary>
+        /// 
+        /// </summary>
+        public string news_postername
+        {
+            set { _news_postername = value; }
+            get { return _news_postername; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string news_title
 		{
 			set{ _news_title=value;}
 			get{return _news_title;}

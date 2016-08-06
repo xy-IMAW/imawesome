@@ -6,7 +6,7 @@ using System.Configuration;
 namespace COMMON
 {
 
-    public class PubConstant
+    public　static　class PubConstant
     {
         /// <summary>
         /// 获取连接字符串

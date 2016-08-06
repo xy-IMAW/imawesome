@@ -8,14 +8,15 @@
 * ───────────────────────────────────
 * V0.01  2016-08-05 21:39:10   N/A    初版
 *
-* Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
+* Copyright (c) 2012 IMAW Corporation. All rights reserved.
 */
 
 using System;
 using System.Data;
 using System.Collections.Generic;
-using IMAW.COMMON;
-using IMAW.MODEL;
+using IMAW.Model;
+using COMMON;
+
 namespace IMAW.BLL
 {
 	/// <summary>
@@ -23,7 +24,7 @@ namespace IMAW.BLL
 	/// </summary>
 	public partial class adminBLL
 	{
-		private readonly Maticsoft.DAL.adminDAL dal=new Maticsoft.DAL.adminDAL();
+		private readonly IMAW.DAL.adminDAL dal=new IMAW.DAL.adminDAL();
 		public adminBLL()
 		{}
 		#region  BasicMethod
@@ -38,7 +39,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Maticsoft.Model.admin model)
+		public bool Add(IMAW.Model.admin model)
 		{
 			return dal.Add(model);
 		}
@@ -46,7 +47,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Maticsoft.Model.admin model)
+		public bool Update(IMAW.Model.admin model)
 		{
 			return dal.Update(model);
 		}
@@ -70,35 +71,35 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Maticsoft.Model.admin GetModel(string admin_id)
+		public IMAW.Model.admin GetModel(string admin_id)
 		{
 			
 			return dal.GetModel(admin_id);
 		}
 
-		/// <summary>
-		/// 得到一个对象实体，从缓存中
-		/// </summary>
-		public Maticsoft.Model.admin GetModelByCache(string admin_id)
-		{
+		///// <summary>
+		///// 得到一个对象实体，从缓存中
+		///// </summary>
+		//public IMAW.Model.admin GetModelByCache(string admin_id)
+		//{
 			
-			string CacheKey = "adminModel-" + admin_id;
-			object objModel = Maticsoft.Common.DataCache.GetCache(CacheKey);
-			if (objModel == null)
-			{
-				try
-				{
-					objModel = dal.GetModel(admin_id);
-					if (objModel != null)
-					{
-						int ModelCache = Maticsoft.Common.ConfigHelper.GetConfigInt("ModelCache");
-						Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
-					}
-				}
-				catch{}
-			}
-			return (Maticsoft.Model.admin)objModel;
-		}
+		//	string CacheKey = "adminModel-" + admin_id;
+		//	object objModel = IMAW.Common.DataCache.GetCache(CacheKey);
+		//	if (objModel == null)
+		//	{
+		//		try
+		//		{
+		//			objModel = dal.GetModel(admin_id);
+		//			if (objModel != null)
+		//			{
+		//				int ModelCache = IMAW.Common.ConfigHelper.GetConfigInt("ModelCache");
+		//				IMAW.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
+		//			}
+		//		}
+		//		catch{}
+		//	}
+		//	return (IMAW.Model.admin)objModel;
+		//}
 
 		/// <summary>
 		/// 获得数据列表
@@ -117,7 +118,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Maticsoft.Model.admin> GetModelList(string strWhere)
+		public List<IMAW.Model.admin> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -125,13 +126,13 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Maticsoft.Model.admin> DataTableToList(DataTable dt)
+		public List<IMAW.Model.admin> DataTableToList(DataTable dt)
 		{
-			List<Maticsoft.Model.admin> modelList = new List<Maticsoft.Model.admin>();
+			List<IMAW.Model.admin> modelList = new List<IMAW.Model.admin>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				Maticsoft.Model.admin model;
+				IMAW.Model.admin model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  ValidateRequest="false" CodeBehind="newsdetails.aspx.cs" Inherits="imaw.Admin.newsdetails" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="newsdetails.aspx.cs" Inherits="imaw.Admin.newsdetails" %>
 
 <!DOCTYPE html>
 <html>
@@ -23,12 +23,8 @@
                         </f:Button>
                         <f:ToolbarFill ID="ToolbarFill1" runat="server">
                         </f:ToolbarFill>
- 
+
                         <f:ToolbarText ID="ToolbarText1" Text="提示一" runat="server">
-                        </f:ToolbarText>
-                        <f:ToolbarSeparator ID="ToolbarSeparator2" runat="server">
-                        </f:ToolbarSeparator>
-                        <f:ToolbarText ID="ToolbarText2" Text="提示二&nbsp;&nbsp;" runat="server">
                         </f:ToolbarText>
                     </Items>
                 </f:Toolbar>
@@ -36,26 +32,32 @@
             <Rows>
                 <f:FormRow>
                     <Items>
-                        <f:Label ID="Label2" Label="申请人" Text="三生石上" CssClass="highlight" runat="server" />
-                        <f:Label ID="Label3" Label="电话" Text="0551-1234567" runat="server" />
+                        <f:Label ID="news_id" Label="新闻编号" Text="" runat="server" />
+                        <f:Label ID="news_posterid" Label="发布者编号" Text=""  runat="server" />
+                        <f:Label ID="news_postername" Label="发布者姓名" Text=""  runat="server" />
+                        <f:DropDownList runat="server" ID="news_state" AutoSelectFirstItem="false" AutoPostBack="false" Label="新闻类别">
+                            <f:ListItem Text="头条新闻" Value="1" />
+                            <f:ListItem Text="强调新闻" Value="2" />
+                            <f:ListItem Text="普通新闻" Value="3" />
+                        </f:DropDownList>
                     </Items>
                 </f:FormRow>
                 <f:FormRow>
                     <Items>
-                        <f:NumberBox ID="NumberBox1" NoNegative="true" Label="数量" Required="true" ShowRedStar="true" runat="server" />
-                        <f:DatePicker ID="DatePicker1" Required="True" ShowRedStar="true" runat="server"
-                            SelectedDate="2008-05-09" Label="申请日期" Text="2008-05-09">
+                        <f:TextBox runat="server" ID="news_title" Label="新闻标题" EmptyText="输入字符会立即触发TextChanged事件" AutoPostBack="true" ></f:TextBox>
+                        <f:DatePicker ID="news_createtime" Required="True" ShowRedStar="true" runat="server"
+                            SelectedDate="2008-05-09" Label="发布时间" Text="2008-05-09">
                         </f:DatePicker>
                     </Items>
                 </f:FormRow>
                 <f:FormRow>
                     <Items>
-                        <f:TextArea ID="TextArea2" Height="80px" Label="描述" runat="server" Required="True" ShowRedStar="true" />
+                        <f:TextArea ID="news_abstract" Height="80px" Label="新闻概述" runat="server" Required="True" ShowRedStar="true" />
                     </Items>
                 </f:FormRow>
                 <f:FormRow>
                     <Items>
-                        <f:HtmlEditor ID="HtmlEditor1" Label="详细描述" Height="150px" runat="server">
+                        <f:HtmlEditor ID="news_content" Label="详细描述" Height="180px" runat="server">
                         </f:HtmlEditor>
                     </Items>
                 </f:FormRow>

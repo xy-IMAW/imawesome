@@ -7,14 +7,14 @@
 * ───────────────────────────────────
 * V0.01  2016-08-05 21:39:10   N/A    初版
 *
-* Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
+* Copyright (c) 2012 IMAW Corporation. All rights reserved.
 */
 
 using System;
 using System.Data;
 using System.Collections.Generic;
-using IMAW.COMMON;
-using IMAW.MODEL;
+using IMAW.Model;
+using COMMON;
 namespace IMAW.BLL
 {
 	/// <summary>
@@ -22,7 +22,7 @@ namespace IMAW.BLL
 	/// </summary>
 	public partial class dept_roleBLL
 	{
-		private readonly Maticsoft.DAL.dept_roleDAL dal=new Maticsoft.DAL.dept_roleDAL();
+		private readonly IMAW.DAL.dept_roleDAL dal=new IMAW.DAL.dept_roleDAL();
 		public dept_roleBLL()
 		{}
 		#region  BasicMethod
@@ -46,7 +46,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Maticsoft.Model.dept_role model)
+		public bool Add(IMAW.Model.dept_role model)
 		{
 			return dal.Add(model);
 		}
@@ -54,7 +54,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Maticsoft.Model.dept_role model)
+		public bool Update(IMAW.Model.dept_role model)
 		{
 			return dal.Update(model);
 		}
@@ -78,7 +78,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Maticsoft.Model.dept_role GetModel(int role_id)
+		public IMAW.Model.dept_role GetModel(int role_id)
 		{
 			
 			return dal.GetModel(role_id);
@@ -87,26 +87,26 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 得到一个对象实体，从缓存中
 		/// </summary>
-		public Maticsoft.Model.dept_role GetModelByCache(int role_id)
-		{
+		//public IMAW.Model.dept_role GetModelByCache(int role_id)
+		//{
 			
-			string CacheKey = "dept_roleModel-" + role_id;
-			object objModel = Maticsoft.Common.DataCache.GetCache(CacheKey);
-			if (objModel == null)
-			{
-				try
-				{
-					objModel = dal.GetModel(role_id);
-					if (objModel != null)
-					{
-						int ModelCache = Maticsoft.Common.ConfigHelper.GetConfigInt("ModelCache");
-						Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
-					}
-				}
-				catch{}
-			}
-			return (Maticsoft.Model.dept_role)objModel;
-		}
+		//	string CacheKey = "dept_roleModel-" + role_id;
+		//	object objModel = IMAW.Common.DataCache.GetCache(CacheKey);
+		//	if (objModel == null)
+		//	{
+		//		try
+		//		{
+		//			objModel = dal.GetModel(role_id);
+		//			if (objModel != null)
+		//			{
+		//				int ModelCache = IMAW.Common.ConfigHelper.GetConfigInt("ModelCache");
+		//				IMAW.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
+		//			}
+		//		}
+		//		catch{}
+		//	}
+		//	return (IMAW.Model.dept_role)objModel;
+		//}
 
 		/// <summary>
 		/// 获得数据列表
@@ -125,7 +125,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Maticsoft.Model.dept_role> GetModelList(string strWhere)
+		public List<IMAW.Model.dept_role> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -133,13 +133,13 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Maticsoft.Model.dept_role> DataTableToList(DataTable dt)
+		public List<IMAW.Model.dept_role> DataTableToList(DataTable dt)
 		{
-			List<Maticsoft.Model.dept_role> modelList = new List<Maticsoft.Model.dept_role>();
+			List<IMAW.Model.dept_role> modelList = new List<IMAW.Model.dept_role>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				Maticsoft.Model.dept_role model;
+				IMAW.Model.dept_role model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

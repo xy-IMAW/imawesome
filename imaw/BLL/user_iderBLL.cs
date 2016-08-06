@@ -7,14 +7,14 @@
 * ───────────────────────────────────
 * V0.01  2016-08-05 21:39:10   N/A    初版
 *
-* Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
+* Copyright (c) 2012 IMAW Corporation. All rights reserved.
 */
 
 using System;
 using System.Data;
 using System.Collections.Generic;
-using IMAW.COMMON;
-using IMAW.MODEL;
+using IMAW.Model;
+using COMMON;
 namespace IMAW.BLL
 {
 	/// <summary>
@@ -22,7 +22,7 @@ namespace IMAW.BLL
 	/// </summary>
 	public partial class user_iderBLL
 	{
-		private readonly Maticsoft.DAL.user_iderDAL dal=new Maticsoft.DAL.user_iderDAL();
+		private readonly IMAW.DAL.user_iderDAL dal=new IMAW.DAL.user_iderDAL();
 		public user_iderBLL()
 		{}
 		#region  BasicMethod
@@ -30,7 +30,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Maticsoft.Model.user_ider model)
+		public bool Add(IMAW.Model.user_ider model)
 		{
 			return dal.Add(model);
 		}
@@ -38,7 +38,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Maticsoft.Model.user_ider model)
+		public bool Update(IMAW.Model.user_ider model)
 		{
 			return dal.Update(model);
 		}
@@ -55,35 +55,34 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Maticsoft.Model.user_ider GetModel()
+		public IMAW.Model.user_ider GetModel(string ider_id)
 		{
-			//该表无主键信息，请自定义主键/条件字段
-			return dal.GetModel();
+			return dal.GetModel(ider_id);
 		}
 
 		/// <summary>
 		/// 得到一个对象实体，从缓存中
 		/// </summary>
-		public Maticsoft.Model.user_ider GetModelByCache()
-		{
-			//该表无主键信息，请自定义主键/条件字段
-			string CacheKey = "user_iderModel-" ;
-			object objModel = Maticsoft.Common.DataCache.GetCache(CacheKey);
-			if (objModel == null)
-			{
-				try
-				{
-					objModel = dal.GetModel();
-					if (objModel != null)
-					{
-						int ModelCache = Maticsoft.Common.ConfigHelper.GetConfigInt("ModelCache");
-						Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
-					}
-				}
-				catch{}
-			}
-			return (Maticsoft.Model.user_ider)objModel;
-		}
+		//public IMAW.Model.user_ider GetModelByCache()
+		//{
+		//	//该表无主键信息，请自定义主键/条件字段
+		//	string CacheKey = "user_iderModel-" ;
+		//	object objModel = IMAW.Common.DataCache.GetCache(CacheKey);
+		//	if (objModel == null)
+		//	{
+		//		try
+		//		{
+		//			objModel = dal.GetModel();
+		//			if (objModel != null)
+		//			{
+		//				int ModelCache = IMAW.Common.ConfigHelper.GetConfigInt("ModelCache");
+		//				IMAW.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
+		//			}
+		//		}
+		//		catch{}
+		//	}
+		//	return (IMAW.Model.user_ider)objModel;
+		//}
 
 		/// <summary>
 		/// 获得数据列表
@@ -102,7 +101,7 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Maticsoft.Model.user_ider> GetModelList(string strWhere)
+		public List<IMAW.Model.user_ider> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -110,13 +109,13 @@ namespace IMAW.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Maticsoft.Model.user_ider> DataTableToList(DataTable dt)
+		public List<IMAW.Model.user_ider> DataTableToList(DataTable dt)
 		{
-			List<Maticsoft.Model.user_ider> modelList = new List<Maticsoft.Model.user_ider>();
+			List<IMAW.Model.user_ider> modelList = new List<IMAW.Model.user_ider>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				Maticsoft.Model.user_ider model;
+				IMAW.Model.user_ider model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

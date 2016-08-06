@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
 using FineUI;
+using IMAW.BLL;
 
 namespace imaw.Admin
 {
-    public partial class news : System.Web.UI.Page
+    public partial class news : System.Web.UI.Page, ISingleGridPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 // 父面板增加 5px 的内边距（显示表格的边框时，看起来比较美观）
-                (Master.FindControl("Panel1") as FineUI.Panel.BodyPadding = "5px";
+                (Master.FindControl("Panel1") as Panel).BodyPadding = "5px";
 
                 BindGrid();
             }
@@ -31,10 +31,8 @@ namespace imaw.Admin
         {
             // 1.设置总项数（特别注意：数据库分页一定要设置总记录数RecordCount）
             Grid1.RecordCount = GetTotalCount();
-
             // 2.获取当前分页数据
             DataTable table = GetPagedDataTable();
-
             // 3.绑定到Grid
             Grid1.DataSource = table;
             Grid1.DataBind();
@@ -46,7 +44,8 @@ namespace imaw.Admin
         /// <returns></returns>
         private int GetTotalCount()
         {
-            return DataSourceUtil.GetDataTable2().Rows.Count;
+            IMAW.BLL.newsBLL bll = new IMAW.BLL.newsBLL();
+            return bll.GetAllList().Tables[0].Rows.Count;
         }
 
         /// <summary>
@@ -55,13 +54,14 @@ namespace imaw.Admin
         /// <returns></returns>
         private DataTable GetPagedDataTable()
         {
+            IMAW.BLL.newsBLL bll = new IMAW.BLL.newsBLL();
             int pageIndex = Grid1.PageIndex;
             int pageSize = Grid1.PageSize;
 
             string sortField = Grid1.SortField;
             string sortDirection = Grid1.SortDirection;
 
-            DataTable table2 = DataSourceUtil.GetDataTable2();
+            DataTable table2 = bll.GetAllList().Tables[0];
 
             DataView view2 = table2.DefaultView;
             view2.Sort = String.Format("{0} {1}", sortField, sortDirection);
@@ -114,7 +114,7 @@ namespace imaw.Admin
         /// <returns></returns>
         public string GetNewUrl()
         {
-            return "~/Admin/newsdetails.aspx";
+            return "~/Admin/newsadd.aspx";
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace imaw.Admin
         public string GetEditUrl()
         {
             object[] keys = Grid1.DataKeys[Grid1.SelectedRowIndex];
-            return String.Format("~/grid/grid_iframe_window.aspx?id={0}&name={1}", keys[0], HttpUtility.UrlEncode(keys[1].ToString()));
+            return String.Format("~/Admin/newsdetails.aspx?id={0}&name={1}", keys[0], HttpUtility.UrlEncode(keys[1].ToString()));
         }
 
         #endregion
