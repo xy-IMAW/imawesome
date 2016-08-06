@@ -16,7 +16,7 @@ namespace imaw.Admin
             if (!IsPostBack)
             {
                 // 父面板增加 5px 的内边距（显示表格的边框时，看起来比较美观）
-                (Master.FindControl("Panel1") as FineUI.Panel).BodyPadding = "5px";
+                (Master.FindControl("Panel1") as FineUI.Panel.BodyPadding = "5px";
 
                 BindGrid();
             }
@@ -41,7 +41,7 @@ namespace imaw.Admin
         }
 
         /// <summary>
-        /// 模拟返回总项数
+        /// 返回总项数
         /// </summary>
         /// <returns></returns>
         private int GetTotalCount()

@@ -216,13 +216,6 @@
       <DependentUpon>bannerdetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ISingleGridPage.cs" />
-    <Compile Include="Admin\news.aspx.cs">
-      <DependentUpon>news.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\news.aspx.designer.cs">
-      <DependentUpon>news.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\newsdetails.aspx.cs">
       <DependentUpon>newsdetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -265,7 +258,6 @@
     <Content Include="Admin\admin.aspx" />
     <Content Include="Admin\banner.aspx" />
     <Content Include="Admin\bannerdetails.aspx" />
-    <Content Include="Admin\news.aspx" />
     <Content Include="Admin\newsdetails.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
