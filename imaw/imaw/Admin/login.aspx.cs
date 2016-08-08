@@ -42,7 +42,7 @@ namespace imaw.FineUI
                     {
                         string admin_lastlogintime = TimeHelper.FormatDate(DateTime.Now, "1");
                         string admin_loginnum = admin.admin_loginnum + 1;
-                        SessionHelper.AddObject("admin",admin);
+                        SessionHelper.AddObject("imaw_admin", admin);
                         Alert.ShowInTop("成功登录！");
                         Response.Redirect("admin.aspx");
                     }

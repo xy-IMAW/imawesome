@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <f:PageManager ID="PageManager1" runat="server" />
-        <f:Panel ID="Panel1" runat="server" ShowBorder="true" ShowHeader="true" Title="母版页"
+        <f:Panel ID="Panel1" runat="server" ShowBorder="true" ShowHeader="false" Title="母版页"
             Layout="VBox" BoxConfigAlign="Stretch" BoxConfigPosition="Start" >
             <Items>
                 <f:CPHConnector runat="server">

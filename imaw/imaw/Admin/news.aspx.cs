@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Data;
 using FineUI;
 using IMAW.BLL;
+using System.Text;
+using System.IO;
+using AspNet = System.Web.UI.WebControls;
 
 namespace imaw.Admin
 {
@@ -17,7 +20,6 @@ namespace imaw.Admin
             {
                 // 父面板增加 5px 的内边距（显示表格的边框时，看起来比较美观）
                 (Master.FindControl("Panel1") as Panel).BodyPadding = "5px";
-
                 BindGrid();
             }
         }
@@ -36,6 +38,41 @@ namespace imaw.Admin
             // 3.绑定到Grid
             Grid1.DataSource = table;
             Grid1.DataBind();
+        }
+
+        /// <summary>
+        /// 绑定下拉菜单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Grid1_RowDataBound(object sender, GridRowEventArgs e)
+        {
+            System.Web.UI.WebControls.Label news_state = (System.Web.UI.WebControls.Label)Grid1.Rows[e.RowIndex].FindControl("news_state");
+
+            //List<string> news_statelist = new List<string>();
+            //news_statelist.Add("头条新闻");
+            //news_statelist.Add("强调新闻");
+            //news_statelist.Add("普通新闻");
+            //news_state.DataSource = news_statelist;
+            //news_state.DataBind();
+
+
+            DataRowView row = e.DataItem as DataRowView;
+
+            int state = Convert.ToInt32(row["news_state"]);
+            if (state == 1)
+            {
+                news_state.Text = "头条新闻";
+            }
+            else if (state == 2)
+            {
+                news_state.Text = "强调新闻";
+            }
+            else
+            {
+                news_state.Text = "普通新闻";
+            }
+
         }
 
         /// <summary>
@@ -139,7 +176,97 @@ namespace imaw.Admin
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
-            Alert.ShowInTop("尚未实现！");
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=news.xls");
+            Response.ContentType = "application/excel";
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.Write(GetGridTableHtml(Grid1));
+            Response.End();
+        }
+
+
+        private string GetGridTableHtml(Grid grid)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("<meta http-equiv=\"content-type\" content=\"application/excel; charset=UTF-8\"/>");
+
+            sb.Append("<table cellspacing=\"0\" rules=\"all\" border=\"1\" style=\"border-collapse:collapse;\">");
+
+            sb.Append("<tr>");
+            foreach (GridColumn column in grid.Columns)
+            {
+                sb.AppendFormat("<td>{0}</td>", column.HeaderText);
+            }
+            sb.Append("</tr>");
+
+
+            foreach (GridRow row in grid.Rows)
+            {
+                sb.Append("<tr>");
+                foreach (object value in row.Values)
+                {
+                    string html = value.ToString();
+                    if (html.StartsWith(Grid.TEMPLATE_PLACEHOLDER_PREFIX))
+                    {
+                        // 模板列
+                        string templateID = html.Substring(Grid.TEMPLATE_PLACEHOLDER_PREFIX.Length);
+                        Control templateCtrl = row.FindControl(templateID);
+                        html = GetRenderedHtmlSource(templateCtrl);
+                    }
+                    else
+                    {
+                        // 处理CheckBox
+                        if (html.Contains("f-grid-static-checkbox"))
+                        {
+                            if (html.Contains("uncheck"))
+                            {
+                                html = "×";
+                            }
+                            else
+                            {
+                                html = "√";
+                            }
+                        }
+
+                        // 处理图片
+                        if (html.Contains("<img"))
+                        {
+                            string prefix = Request.Url.AbsoluteUri.Replace(Request.Url.AbsolutePath, "");
+                            html = html.Replace("src=\"", "src=\"" + prefix);
+                        }
+                    }
+
+                    sb.AppendFormat("<td>{0}</td>", html);
+                }
+                sb.Append("</tr>");
+            }
+
+            sb.Append("</table>");
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 获取控件渲染后的HTML源代码
+        /// </summary>
+        /// <param name="ctrl"></param>
+        /// <returns></returns>
+        private string GetRenderedHtmlSource(Control ctrl)
+        {
+            if (ctrl != null)
+            {
+                using (StringWriter sw = new StringWriter())
+                {
+                    using (HtmlTextWriter htw = new HtmlTextWriter(sw))
+                    {
+                        ctrl.RenderControl(htw);
+
+                        return sw.ToString();
+                    }
+                }
+            }
+            return String.Empty;
         }
 
         protected void Button10_Click(object sender, EventArgs e)

@@ -25,7 +25,8 @@
         BoxFlex="1"
         AllowPaging="true" runat="server" EnableCheckBoxSelect="True"
         DataKeyNames="news_id,news_title" IsDatabasePaging="true"
-        AllowSorting="true" SortField="news_id" SortDirection="ASC">
+        AllowSorting="true" SortField="news_id" SortDirection="ASC"
+        OnRowDataBound="Grid1_RowDataBound">
         <Columns>
             <f:RowNumberField />
             <f:BoundField DataField="news_id" Width="100px" SortField="news_id" DataFormatString="{0}"
@@ -43,8 +44,15 @@
             <f:BoundField DataField="news_createtime" Width="100px" SortField="news_createtime" DataFormatString="{0}"
                 HeaderText="发布时间" />
 
-            <f:BoundField DataField="news_state" Width="50px" SortField="news_state" DataFormatString="{0}"
-                HeaderText="新闻级别" />
+
+            <f:TemplateField Width="100px" HeaderText="新闻状态" TextAlign="Center">
+                <ItemTemplate>
+                    <asp:Label ID="news_state" runat="server" Text=""></asp:Label>
+                </ItemTemplate>
+            </f:TemplateField>
+
+
+
 
             <f:BoundField DataField="news_abstract" Width="200px" SortField="news_abstract" DataFormatString="{0}"
                 HeaderText="新闻概要" />
@@ -57,8 +65,9 @@
         <Toolbars>
             <f:Toolbar ID="Toolbar1" runat="server">
                 <Items>
-                    <f:Button ID="btnImport" runat="server" Text="导入数据" OnClick="btnImport_Click"></f:Button>
-                    <f:Button ID="btnExport" runat="server" Text="导出数据" OnClick="btnExport_Click"></f:Button>
+                    <f:Button ID="btnExport" EnableAjax="false" DisableControlBeforePostBack="false"
+                        runat="server" Text="导出为Excel文件" OnClick="btnExport_Click">
+                    </f:Button>
                 </Items>
             </f:Toolbar>
         </Toolbars>

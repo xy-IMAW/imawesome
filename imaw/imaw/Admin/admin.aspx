@@ -6,7 +6,7 @@
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>学生成绩管理系统</title>
+    <title>协会官网后台管理系统</title>
     <style>
         .header .title a,
         .header .pro a {
@@ -151,14 +151,11 @@
                             <table class="bottomtable">
                                 <tr>
                                     <td style="width: 300px;">
-                                        
-                                        <f:Label ID="ad" Text="" runat="server">
-                                        </f:Label>
-                                        <f:Label ID="ad_class" Text="" runat="server">
-                                        </f:Label>
+                                        <f:Button ID="ad_id" IconUrl="~/res/icon/user_b.png"  runat="server" />
+                                        <f:Button ID="ad_logout" IconUrl="~/res/icon/system_close.gif" text="注销" OnClick="login_out" runat="server" />
                                     </td>
                                     <td style="text-align: center;">Copyright &copy; 武汉理工大学信息管理协会</td>
-                                    <td style="width: 300px; text-align: right;">&nbsp;</td>
+                                    <td style="width: 300px; text-align: right;">在线人数：<f:Label ID="online_num"  runat="server"></f:Label>&nbsp;</td>
                                 </tr>
                             </table>
                         </f:ContentPanel>

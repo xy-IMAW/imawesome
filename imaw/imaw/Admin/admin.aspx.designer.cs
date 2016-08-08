@@ -130,21 +130,30 @@ namespace imaw.Admin {
         protected global::FineUI.ContentPanel ContentPanel3;
         
         /// <summary>
-        /// ad 控件。
+        /// ad_id 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Label ad;
+        protected global::FineUI.Button ad_id;
         
         /// <summary>
-        /// ad_class 控件。
+        /// ad_logout 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FineUI.Label ad_class;
+        protected global::FineUI.Button ad_logout;
+        
+        /// <summary>
+        /// online_num 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FineUI.Label online_num;
     }
 }

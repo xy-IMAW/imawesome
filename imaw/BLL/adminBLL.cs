@@ -178,7 +178,20 @@ namespace IMAW.BLL
 		#endregion  BasicMethod
 		#region  ExtensionMethod
 
-		#endregion  ExtensionMethod
-	}
+       //获得管理员的详细信息
+        public IMAW.Model.user_info GetAdminInfo(string ider_id)
+        {
+
+            IMAW.BLL.user_iderBLL user_ider = new IMAW.BLL.user_iderBLL();
+            IMAW.BLL.user_infoBLL user_info = new IMAW.BLL.user_infoBLL();
+
+            string user_id = user_ider.GetModel(ider_id).user_id;
+            return user_info.GetModel(user_id);
+
+        }
+
+
+        #endregion  ExtensionMethod
+    }
 }
 

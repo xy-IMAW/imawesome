@@ -9,14 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <f:PageManager ID="PageManager1" runat="server" />
-        用户名：admin
-        <br />
-        密码：admin
-        <br />
-        <br />
-        <br />
-        注意：在任意输入框内按回车键都会触发表单的提交（相当于点击【登陆】按钮）。
-        <f:Window ID="Window1" runat="server" Title="登录表单" IsModal="false" EnableClose="false"
+        <f:Window ID="Window1" runat="server" Title="后台登录" IsModal="false" EnableClose="false"
             WindowPosition="GoldenSection" Width="350px">
             <Items>
                 <f:SimpleForm ID="SimpleForm1" runat="server" ShowBorder="false" BodyPadding="10px"
@@ -26,7 +19,7 @@
                         </f:TextBox>
                         <f:TextBox ID="ad_pwd" Label="密码" TextMode="Password" Required="true" runat="server">
                         </f:TextBox>
-                        <f:DropDownList runat="server" ID="ad_class">
+                        <f:DropDownList runat="server" label="角色" ID="ad_class">
                             <f:ListItem Text="超级管理员" Value="1" Selected="true" />
                             <f:ListItem Text="新闻管理员" Value="2" EnableSelect="true" />
                             <f:ListItem Text="活动管理员" Value="3" EnableSelect="true" />
