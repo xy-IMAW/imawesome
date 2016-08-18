@@ -18,8 +18,7 @@ namespace imaw.Admin
         {
             if (!IsPostBack)
             {
-                //int news_id = Convert.ToInt32(Request.QueryString["id"].Trim());
-                int news_id = 3;
+                int news_id = Convert.ToInt32(Request.QueryString["id"].Trim());
                 //查找文章;
                 IMAW.BLL.newsBLL bll = new IMAW.BLL.newsBLL();
                 IMAW.Model.news newsModel = new IMAW.Model.news();

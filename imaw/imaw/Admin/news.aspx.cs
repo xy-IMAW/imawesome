@@ -131,6 +131,15 @@ namespace imaw.Admin
         /// </summary>
         public void DeleteSelectedRows()
         {
+            IMAW.BLL.newsBLL newsbll = new IMAW.BLL.newsBLL();
+
+            foreach (int n in Grid.SelectedRowIndexArray)
+            {
+                object[] keys = Grid1.DataKeys[n];
+                int news_id = Convert.ToInt32(keys[0]);
+                newsbll.Delete(news_id);
+            }
+            PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
             Alert.ShowInTop("删除选中的 " + Grid1.SelectedRowIndexArray.Length + " 项纪录！");
         }
 
@@ -174,6 +183,11 @@ namespace imaw.Admin
             Alert.ShowInTop("尚未实现！");
         }
 
+        /// <summary>
+        /// excel 导出数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnExport_Click(object sender, EventArgs e)
         {
             Response.ClearContent();

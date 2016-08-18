@@ -26,6 +26,15 @@ namespace imaw
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            //bundles.Add(new StyleBundle("~/imaw_frwebsite/css").Include(
+            //       "~/style/css/*.css",
+            //       "~/style/css/color/red.css"));
+
+            //bundles.Add(new StyleBundle("~/imaw_frwebsite/js").Include(
+            //       "~/style/js/*.js"));
+
+
         }
     }
 }

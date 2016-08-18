@@ -33,12 +33,10 @@ namespace imaw.Admin
 
             user_info = adminbll.GetAdminInfo(admin.admin_id);
             string format = "yyyy-MM-dd";
-            DateTime now =  new DateTime();
             //数据绑定到表格
-            news_createtime.Text = now.ToString(format);
+            news_createtime.Text = DateTime.Now.ToString(format);
             news_posterid.Text = admin.admin_id.ToString();
             news_postername.Text = user_info.user_realname;
-
 
             news_title.Text = "";
             btnClose.OnClientClick = ActiveWindow.GetHideReference();
@@ -61,8 +59,8 @@ namespace imaw.Admin
             model.news_title = news_title.Text;
 
             
-            model.news_abstract = news_content;
-            model.news_content = news_abstract;
+            model.news_abstract = news_abstract;
+            model.news_content = news_content;
             model.news_state = news_state.SelectedIndex;
 
             if (bll.Add(model) > 0)
